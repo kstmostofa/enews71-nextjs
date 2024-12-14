@@ -61,7 +61,7 @@ const menus: MenuItem[] = [
   { name: "বাংলাদেশ", link: "/category" },
   { name: "বিশেষ প্রতিবেদন", link: "/category" },
   {
-    name: "ধর্ম",
+    name: "ধর্মইসলাম",
     link: "/category",
     subItems: [
       { name: "ইসলাম", link: "/category/islam" },
@@ -144,7 +144,7 @@ const Header = () => {
                 <ul
                   className={`absolute rounded ${
                     index === menus.length - 1 ? "right-0" : "left-0"
-                  } top-full mt-0 bg-white text-black shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300 ${
+                  } z-40 top-full mt-0 bg-white text-black shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300 ${
                     menu.subItems.length > 3
                       ? "grid grid-cols-4 p-2 w-[600px]"
                       : "w-[200px] p-2"
