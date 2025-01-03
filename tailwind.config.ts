@@ -1,14 +1,14 @@
 import type { Config } from "tailwindcss";
 
 export default {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    extend: {
-      screens: {
+	content: [
+		"./pages/**/*.{js,ts,jsx,tsx,mdx}",
+		"./components/**/*.{js,ts,jsx,tsx,mdx}",
+		"./app/**/*.{js,ts,jsx,tsx,mdx}",
+	],
+	theme: {
+		extend: {
+			screens: {
 				xs: "475px",
 			},
 			colors: {
@@ -19,6 +19,7 @@ export default {
 
 				},
 				secondary: "#ED1C24",
+				light: "#F7F7F7",
 				black: {
 					"100": "#333333",
 					"200": "#141413",
@@ -30,7 +31,7 @@ export default {
 					DEFAULT: "#FFFFFF",
 				},
 			},
-    },
-  },
-  plugins: [],
+		},
+	},
+	plugins: [],
 } satisfies Config;

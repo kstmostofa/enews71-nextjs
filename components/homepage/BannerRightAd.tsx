@@ -6,9 +6,9 @@ interface BannerRightAdProps {
 }
 const BannerRightAd = ({ addimage }: BannerRightAdProps) => {
   return (
-    <div className="relative w-full lg:w-1/3 ">
+    <div className="relative w-full">
       <div className="w-full h-40 lg:h-80">
-        <Image
+      <Image
           src={addimage ? addimage : "/image.png"}
           alt="ad banner"
           layout="fill"
