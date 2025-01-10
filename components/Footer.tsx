@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <div className="bg-[#EDEDED]">
       <div className="container mx-auto py-4 md:py-8">
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-between  gap-4">
           <div className="">
             <Image
               src="/logo.png"
@@ -18,7 +18,7 @@ const Footer = () => {
               className="w-[200px] object-cover"
             />
           </div>
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-4 text-center p-4 md:p-0">
             <div className=" flex flex-col items-center gap-1">
               <h3 className="text-xl">সম্পাদক : মোঃ শওকত হায়দার (জিকো)</h3>
               <h4 className="text-lg">প্রকাশক : ইনিউজ৭১ মিডিয়া লিমিটেড </h4>
@@ -31,7 +31,7 @@ const Footer = () => {
                 nfo@enews71.com , enewsltd@gmail.com
               </p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-center flex-wrap gap-4">
               <Link href="#">
                 <h4 className="text-xl hover:underline">গোপনীয়তার নীতি</h4>
               </Link>
@@ -72,12 +72,12 @@ const Footer = () => {
         </div>
       </div>
       <div className="bg-black ">
-        <div className="container mx-auto py-4 flex items-center justify-between">
+        <div className="container mx-auto py-4 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
           <div className="">
             <p className="text-xl text-white">স্বত্ব © ইনিউজ৭১.কম | </p>
           </div>
           <div className="">
-            <p className="text-xl text-white">
+            <p className="text-xl text-white text-center">
               ওয়েবসাইটের কোনো লেখা, ছবি, ভিডিও অনুমতি ছাড়া ব্যবহার বেআইনি।
             </p>
           </div>
