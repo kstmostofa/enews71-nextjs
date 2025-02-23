@@ -64,4 +64,8 @@
     @apply bg-background text-foreground;
   }
 } */
-
+@layer base{
+  .card-shadow {
+    @apply hover:shadow-md transition-all hover:bg-white-100;
+  }
+}

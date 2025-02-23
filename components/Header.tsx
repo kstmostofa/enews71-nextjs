@@ -8,10 +8,13 @@ import {
   LuYoutube,
 } from "react-icons/lu";
 import MobileHeader from "./MobileHeader";
+import { fetchApi } from "@/lib/fetchApi";
 
 export interface MenuItem {
+  id: number;
   name: string;
-  link: string;
+  name_bn: string;
+  slug: string;
   subItems?: MenuItem[];
 }
 
@@ -20,73 +23,38 @@ export interface SociaLink {
   link: string;
   icon: JSX.Element;
 }
-const menus: MenuItem[] = [
-  { name: "জাতীয়", link: "/category" },
-  { name: "আন্তর্জাতিক", link: "/category" },
-  { name: "জেলার সংবাদ", link: "/category" },
-  {
-    name: "খেলা",
-    link: "/category",
-    subItems: [
-      { name: "ক্রিকেট", link: "/category/cricket" },
-      { name: "ফুটবল", link: "/category/football" },
-      { name: "হকি", link: "/category/hockey" },
-    ],
-  },
-  {
-    name: "ধর্ম",
-    link: "/category",
-    subItems: [
-      { name: "ইসলাম", link: "/category/islam" },
-      { name: "হিন্দু", link: "/category/hindu" },
-      { name: "খ্রিষ্টান", link: "/category/christian" },
-      { name: "বৌদ্ধ", link: "/category/buddhist" },
-      { name: "অন্যান্য", link: "/category/other" },
-      { name: "ইসলাম", link: "/category/islam" },
-      { name: "হিন্দু", link: "/category/hindu" },
-      { name: "খ্রিষ্টান", link: "/category/christian" },
-      { name: "বৌদ্ধ", link: "/category/buddhist" },
-      { name: "অন্যান্য", link: "/category/other" },
-    ],
-  },
-  { name: "বিনোদন", link: "/category" },
-  { name: "প্রবাস", link: "/category" },
-  { name: "বিজ্ঞান", link: "/category" },
-  { name: "শিক্ষা", link: "/category" },
-  { name: "স্বাস্থ্য", link: "/category" },
-  { name: "প্রযুক্তি", link: "/category" },
-
-  { name: "বিচিত্র", link: "/category" },
-  { name: "অপরাধ", link: "/category" },
-  { name: "বাংলাদেশ", link: "/category" },
-  { name: "বিশেষ প্রতিবেদন", link: "/category" },
-  {
-    name: "ধর্মইসলাম",
-    link: "/category",
-    subItems: [
-      { name: "ইসলাম", link: "/category/islam" },
-      { name: "হিন্দু", link: "/category/hindu" },
-      { name: "খ্রিষ্টান", link: "/category/christian" },
-      { name: "বৌদ্ধ", link: "/category/buddhist" },
-      { name: "অন্যান্য", link: "/category/other" },
-    ],
-  },
-];
-
 const socials: SociaLink[] = [
   { name: "Facebook", link: "https://facebook.com", icon: <LuFacebook /> },
   { name: "Twitter", link: "https://twitter.com", icon: <LuTwitter /> },
   { name: "Instagram", link: "https://instagram.com", icon: <LuInstagram /> },
   { name: "Youtube", link: "https://youtube.com", icon: <LuYoutube /> },
 ];
-const Header = () => {
+const getEnglishDate = () => {
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  };
+  return new Intl.DateTimeFormat("bn-BD", options).format(new Date());
+};
+
+
+const Header = async () => {
+  const menus = await fetchApi<MenuItem[]>("categories");
+
   return (
     <header>
       <div className="hidden md:block px-5 py-3 bg-white shadow-sm container mx-auto">
         <div className="flex justify-between items-center relative">
           <div className="flex flex-col">
-            <span className="font-semibold">রবিবার, ২৯ সেপ্টেম্বর ২০২৪</span>
-            <span className="font-semibold">১৪ আশ্বিন ১৪৩১</span>
+            <span className="font-semibold">
+            {/* রবিবার, ২৯ সেপ্টেম্বর ২০২৪ */}
+            {getEnglishDate()}
+
+            </span>
+            <span className="font-semibold">
+            </span>
           </div>
 
           <div className="absolute left-1/2 transform -translate-x-1/2">
@@ -101,7 +69,10 @@ const Header = () => {
               EN
             </Link>
             {socials.map((social, index) => (
-              <span key={index} className="text-primary hover:text-secondary text-xl">
+              <span
+                key={index}
+                className="text-primary hover:text-secondary text-xl"
+              >
                 <Link href={social.link} target="_blank">
                   {social.icon}
                 </Link>
@@ -122,12 +93,12 @@ const Header = () => {
 
           {menus.map((menu, index) => (
             <li
-              key={index}
+              key={menu.id}
               className="relative py-2.5 px-3 group hover:bg-primary-500 hover:text-white"
             >
-              <Link href={menu.link} className="flex items-center">
-                {menu.name}
-                {menu.subItems && (
+              <Link href={menu.slug} className="flex items-center">
+                {menu.name_bn}
+                {menu.subItems && menu.subItems.length != 0 && (
                   <span className="ml-2">
                     <svg
                       className="w-3 h-3 fill-current"
@@ -140,7 +111,7 @@ const Header = () => {
                 )}
               </Link>
 
-              {menu.subItems && (
+              {menu.subItems && menu.subItems.length != 0 && (
                 <ul
                   className={`absolute rounded ${
                     index === menus.length - 1 ? "right-0" : "left-0"
@@ -151,9 +122,9 @@ const Header = () => {
                   }`}
                 >
                   {menu.subItems.map((subItem, subIndex) => (
-                    <Link key={subIndex} href={subItem.link}>
+                    <Link key={subIndex} href={subItem.slug}>
                       <li className="py-2 px-4 hover:bg-primary-500 hover:text-white whitespace-nowrap rounded">
-                        {subItem.name}
+                        {subItem.name_bn}
                       </li>
                     </Link>
                   ))}

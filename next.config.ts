@@ -4,7 +4,16 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: true,
   images: {
-    domains: ["new.enews71.com"],
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "127.0.0.1",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
+    ],
   },
 };
 

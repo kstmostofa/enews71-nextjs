@@ -3,10 +3,16 @@ import Separator from "../Separator";
 import Link from "next/link";
 import Image from "next/image";
 
-const PoliticalNews = () => {
+const PoliticalNews = ({
+  title= "রাজনীতি",
+  category= "politics",
+}: {
+  title: string;
+  category: string;
+}) => {
   return (
     <div>
-      <Separator text="রাজনীতি" />
+      <Separator text={title} />
       <div className="mt-4">
         <div className="grid grid-cols-12 gap-4 md:gap-8">
           <div className="col-span-12 md:col-span-8">

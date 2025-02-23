@@ -10,7 +10,7 @@ const Comment = () => {
         {[1, 2, 3].map((item, index) => {
           return (
             <div key={index} className="col-span-12 md:col-span-4">
-              <div className="bg-[#E1F8EB] flex  p-4 items-center gap-4 w-full">
+              <div className="bg-[#E1F8EB] flex  p-4 items-center gap-4 w-full rounded-lg">
                 <div className="w-[85px] flex-shrink-0">
                   <Image
                     src="/image.png"

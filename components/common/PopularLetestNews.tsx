@@ -2,19 +2,27 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { useState } from "react";
 
-const PopularLetestNews = () => {
-  const [activeTab, setActiveTab] = React.useState("popular");
+const PopularLatestNews = ({
+  latestNews,
+  popularNews,
+}: {
+  latestNews: News[];
+  popularNews: News[];
+}) => {
+  const [activeTab, setActiveTab] = useState<string>("latest");
+
   return (
-    <div>
+    <div className="mt-4">
       <div className="border rounded-lg overflow-hidden">
         <div className="flex justify-between w-full border-b">
           <div
             onClick={() => setActiveTab("latest")}
             className={cn(
-              " w-1/2 cursor-pointer flex items-center justify-center font-semibold p-2 text-[#ACACAC]",
-              activeTab === "latest" && "bg-[#2C4B9C] text-white"
+              "w-1/2 cursor-pointer flex items-center justify-center font-semibold p-2 text-primary bg-white-100",
+              activeTab === "latest" &&
+                "bg-[#2C4B9C] text-white border-b-2 border-red-500"
             )}
           >
             <p>সর্বশেষ সংবাদ</p>
@@ -22,66 +30,37 @@ const PopularLetestNews = () => {
           <div
             onClick={() => setActiveTab("popular")}
             className={cn(
-              " w-1/2 cursor-pointer flex items-center justify-center font-semibold p-2 text-[#ACACAC]",
-              activeTab === "popular" && "bg-[#2C4B9C] text-white"
+              "w-1/2 cursor-pointer flex items-center justify-center font-semibold p-2 text-primary bg-white-100",
+              activeTab === "popular" &&
+                "bg-[#2C4B9C] text-white border-b-2 border-red-500"
             )}
           >
             <p>জনপ্রিয়</p>
           </div>
         </div>
-        <div className="p-4 h-[400px] overflow-auto">
-          {activeTab === "popular" && (
-            <div className="">
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => {
-                return (
-                  <Link href="#" key={index}>
-                    <div className="flex flex-row gap-4 w-full mb-4">
-                      <div className="w-[70%] ">
-                        <p className="hover:underline text-black font-semibold">
-                          বৈষম্যবিরোধী আন্দোলনে ‘শহীদের’ তালিকায় আরও ৯ জনের নাম
-                        </p>
-                      </div>
-                      <div className="w-[30%]">
-                        <Image
-                          src="/image.png"
-                          alt="Card Image"
-                          width={100}
-                          height={100}
-                          className="w-full object-cover"
-                        />
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          )}
-          {activeTab === "latest" && (
-            <div className="">
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => {
-                return (
-                  <Link href="#" key={index}>
-                    <div className="flex flex-row gap-4 w-full mb-4">
-                      <div className="w-[70%] ">
-                        <p className="hover:underline text-black font-semibold">
-                          ডিগ্রিতে অটো পাসের দাবিতে জাতীয় বিশ্ববিদ্যালয়ের
-                          উপাচার্যের অফিস ঘেরাও
-                        </p>
-                      </div>
-                      <div className="w-[30%]">
-                        <Image
-                          src="/image.png"
-                          alt="Card Image"
-                          width={100}
-                          height={100}
-                          className="w-full object-cover "
-                        />
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
+
+        <div className="h-[660px] overflow-auto">
+          {(activeTab === "popular" ? popularNews : latestNews).map(
+            (item, index) => (
+              <Link href={`/news/${item.slug}`} key={index}>
+                <div className="flex flex-row gap-4 w-full items-center border-b p-2 hover:bg-white-100">
+                  <div className="w-[70%]">
+                    <p className="hover:underline text-black font-semibold hover:text-primary">
+                      {item.title}
+                    </p>
+                  </div>
+                  <div className="w-[30%]">
+                    <Image
+                      src={item.featured_image}
+                      alt="Card Image"
+                      width={100}
+                      height={80}
+                      className="w-full h-[80px] object-cover rounded-md"
+                    />
+                  </div>
+                </div>
+              </Link>
+            )
           )}
         </div>
       </div>
@@ -89,4 +68,4 @@ const PopularLetestNews = () => {
   );
 };
 
-export default PopularLetestNews;
+export default PopularLatestNews;

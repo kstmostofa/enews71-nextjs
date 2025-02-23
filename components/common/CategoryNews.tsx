@@ -9,14 +9,14 @@ const CategoryNews = () => {
     <div>
       <Separator text="শিক্ষা" />
       <div className="mt-4">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 bg-white-100">
           {[1, 2, 3, 4].map((item, index) => {
             return (
               <div
                 key={index}
                 className={cn(
                   "flex gap-4 border-b pb-4",
-                  index === 0 ? "flex-col" : "flex-row"
+                  index === 0 ? "flex-col" : "flex-row gap-2"
                 )}
               >
                 <div className="">
@@ -26,16 +26,16 @@ const CategoryNews = () => {
                     width={index === 0 ? 400 : 135}
                     height={index === 0 ? 235 : 75}
                     className={cn(
-                      "w-full h-[235px] object-cover",
-                      index === 0 ? "h-[235px]" : "h-[75px] w-[135px] "
+                      "w-full h-[235px] object-cover rounded-t-lg",
+                      index === 0 ? "h-[235px]" : "h-[75px] w-[135px] pl-2 rounded-lg"
                     )}
                   />
                 </div>
-                <div className="">
+                <div className="px-2">
                   <Link href="#">
                     <h3
                       className={cn(
-                        "text-xl font-semibold text-[#292219] cursor-pointer hover:underline mt-2",
+                        "font-semibold text-[#292219] cursor-pointer hover:underline mt-2 hover:text-primary",
                         index === 0 ? "text-xl" : "text-lg"
                       )}
                     >
