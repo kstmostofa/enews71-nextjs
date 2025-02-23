@@ -37,7 +37,7 @@ async function Home() {
           <PoliticalNews title="রাজনীতি" category="political" />
         </div>
         <div className="">
-          <GoogleAdsense />
+          <GoogleAdsense ratio="wide" />
         </div>
 
         <div className="my-4">
@@ -48,7 +48,7 @@ async function Home() {
           />
         </div>
         <div className="">
-          <GoogleAdsense />
+          <GoogleAdsense ratio="wide" />
         </div>
         <div className="grid grid-cols-4 gap-4 my-4">
           <div className="col-span-4 md:col-span-3">
@@ -59,7 +59,7 @@ async function Home() {
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-4 md:gap-8">
+        <div className="grid grid-cols-4 gap-4 md:gap-8 mb-4">
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => {
             return (
               <div key={index} className="col-span-3 md:col-span-1">

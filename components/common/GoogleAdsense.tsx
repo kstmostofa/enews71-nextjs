@@ -1,8 +1,9 @@
 "use client";
 import { useEffect } from "react";
 import Head from "next/head";
+import Image from "next/image";
 
-const GoogleAdsense = () => {
+const GoogleAdsense = ({ ratio = "square" }) => {
   useEffect(() => {
     if (typeof window !== "undefined" && (window as any).adsbygoogle) {
       (window as any).adsbygoogle.push({});
@@ -19,8 +20,15 @@ const GoogleAdsense = () => {
         ></script>
       </Head>
       <div>
-        <div className="flex items-center justify-center h-32">
-          <p>google ads</p>
+        <div className="flex items-center justify-center w-full">
+          {/* <p>google ads</p> */}
+          <Image
+            src={ratio === "square" ? "/google-add-square.png" : "/google-add.png"}
+            alt="Google Adsense"
+            width={970}
+            height={90}
+            className={ratio === "square" ? "w-full" : "w-[970px]"}
+          />
         </div>
         <ins
           className="adsbygoogle"

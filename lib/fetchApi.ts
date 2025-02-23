@@ -1,4 +1,3 @@
-// Purpose: Fetch API with error handling
 
 export async function fetchApi<T>(url: string, method: string = "GET", body?: any): Promise<T> {
     const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://new.enews71.com/api/';
