@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const kalpurush = localFont({
-  src: "/fonts/Kalpurush.ttf",
+  src: "./fonts/kalpurush.ttf",
   variable: "--font-sans",
 });
 
