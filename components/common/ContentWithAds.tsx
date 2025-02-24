@@ -9,7 +9,7 @@ const ContentWithAds = ({ content }: { content: string }) => {
     <>
       {paragraphs.map((item, index) => (
         <React.Fragment key={index}>
-          <div className="prose text-black prose-md lg:prose-lg xl:prose-xl w-full max-w-none"> 
+          <div className="prose text-black prose-xl w-full max-w-none"> 
             <div dangerouslySetInnerHTML={{ __html: item + "</p>" }} />
           </div>
           {(index + 1) % 4 === 0 && <GoogleAdsense ratio="wide" />}
