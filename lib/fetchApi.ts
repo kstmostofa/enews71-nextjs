@@ -7,8 +7,8 @@ export async function fetchApi<T>(url: string, method: string = "GET", body?: an
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(body),
-            cache: "no-store",
+            body: method !== "GET" ? JSON.stringify(body) : undefined,
+            next: { revalidate: 10 },
         });
 
         if (!res.ok) {
