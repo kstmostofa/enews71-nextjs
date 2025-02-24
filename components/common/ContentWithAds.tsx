@@ -13,7 +13,7 @@ const ContentWithAds = ({ content }: { content: string }) => {
               __html: item + "</p>",
             }}
           ></div>
-          {(index + 1) % 4 === 0 && <GoogleAdsense />}
+          {(index + 1) % 4 === 0 && <GoogleAdsense ratio="wide" />}
         </React.Fragment>
       ))}
     </>
