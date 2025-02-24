@@ -17,7 +17,11 @@ const InternationalNews = async ({
   limit = 5,
 }: InternationalNewsProps) => {
   const InternationalNews = await fetchApi<News[]>(
-    `category/${category}?limit=${limit}`
+    `category/${category}?limit=${limit}`,
+    "GET",
+    {
+      next: { revalidate: 10 },
+    }
   );
   const [firstNews, ...restNews] = InternationalNews;
   const middleNews = restNews.slice(0, 2);

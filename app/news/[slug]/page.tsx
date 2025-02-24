@@ -12,10 +12,16 @@ import { fetchApi } from "@/lib/fetchApi";
 import { notFound } from "next/navigation";
 import { getStripHtml } from "@/lib/utils";
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const slug = (await params).slug;  
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const slug = (await params).slug;
   try {
-    const news = await fetchApi<News>(`news/${slug}`);
+    const news = await fetchApi<News>(`news/${slug}`, "GET", {
+      next: { revalidate: 10 },
+    });
 
     if (!news) return notFound();
 
@@ -26,7 +32,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         title: news.title,
         description: getStripHtml(news.content, 20) || "Enws71",
         url: `https://new.enews71.com/news/${news.slug}`,
-        images: [{ url: news.featured_image || "/default-image.jpg", width: 1200, height: 630, alt: news.title }],
+        images: [
+          {
+            url: news.featured_image || "/default-image.jpg",
+            width: 1200,
+            height: 630,
+            alt: news.title,
+          },
+        ],
       },
       twitter: {
         card: "summary_large_image",
@@ -41,11 +54,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-const SingleNews = async ({ params }: { params: Promise<{ slug: string }> }) => {
-
+const SingleNews = async ({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) => {
   const slug = (await params).slug;
-  const data = await fetchApi<News>(`news/${slug}`);
-
+  const data = await fetchApi<News>(`news/${slug}`, "GET", {
+    next: { revalidate: 10 },
+  });
 
   return (
     <div className="container mx-auto p-4 md:p-0">
@@ -75,12 +92,15 @@ const SingleNews = async ({ params }: { params: Promise<{ slug: string }> }) => 
                   <div>
                     <p className="text-sm">
                       {data?.reporter?.name ?? "Unknown Reporter"},{" "}
-                      {data?.reporter?.designation?.name ?? "Unknown Designation"}
-
+                      {data?.reporter?.designation?.name ??
+                        "Unknown Designation"}
                     </p>
                     <p className="text-xs">
                       {data?.published_at
-                        ? format(new Date(data.published_at), "MM/dd/yyyy hh:mm a")
+                        ? format(
+                            new Date(data.published_at),
+                            "MM/dd/yyyy hh:mm a"
+                          )
                         : "Unknown Date"}
                     </p>
                   </div>
@@ -92,16 +112,28 @@ const SingleNews = async ({ params }: { params: Promise<{ slug: string }> }) => 
                     <p className="text-sm">2.5k</p>
                     <p className="text-xs">Share</p>
                   </div>
-                  <Button size="icon" className="bg-[#E2E2E2] hover:bg-[#e2e2e2c4]">
+                  <Button
+                    size="icon"
+                    className="bg-[#E2E2E2] hover:bg-[#e2e2e2c4]"
+                  >
                     <Facebook fill="#000" />
                   </Button>
-                  <Button size="icon" className="bg-[#E2E2E2] hover:bg-[#e2e2e2c4]">
+                  <Button
+                    size="icon"
+                    className="bg-[#E2E2E2] hover:bg-[#e2e2e2c4]"
+                  >
                     <Share2 />
                   </Button>
-                  <Button size="icon" className="bg-[#E2E2E2] hover:bg-[#e2e2e2c4]">
+                  <Button
+                    size="icon"
+                    className="bg-[#E2E2E2] hover:bg-[#e2e2e2c4]"
+                  >
                     <Copy />
                   </Button>
-                  <Button size="icon" className="bg-[#E2E2E2] hover:bg-[#e2e2e2c4]">
+                  <Button
+                    size="icon"
+                    className="bg-[#E2E2E2] hover:bg-[#e2e2e2c4]"
+                  >
                     <Printer />
                   </Button>
                 </div>
@@ -124,14 +156,19 @@ const SingleNews = async ({ params }: { params: Promise<{ slug: string }> }) => 
 
           {/* Content */}
           <div className="mt-4">
-            <ContentWithAds content={data?.content || "No content available."} />
+            <ContentWithAds
+              content={data?.content || "No content available."}
+            />
           </div>
 
           {/* Tags */}
           <div className="mt-4">
             {data?.tags?.length ? (
               data.tags.map((tag: string, index: number) => (
-                <span key={index} className="inline-block mr-2 bg-gray-200 px-3 py-1 rounded">
+                <span
+                  key={index}
+                  className="inline-block mr-2 bg-gray-200 px-3 py-1 rounded"
+                >
                   {tag}
                 </span>
               ))

@@ -12,7 +12,9 @@ const CommonNews = async ({
   sectionTitle: string;
   category: string;
 }) => {
-  const nationalNews = await fetchApi<News[]>(`category/${category}`);
+  const nationalNews = await fetchApi<News[]>(`category/${category}`, "GET", {
+    next: { revalidate: 10 },
+  });
 
   const [firstNews, ...restNews] = nationalNews;
 

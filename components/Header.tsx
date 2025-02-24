@@ -41,7 +41,9 @@ const getEnglishDate = () => {
 
 
 const Header = async () => {
-  const menus = await fetchApi<MenuItem[]>("categories");
+  const menus = await fetchApi<MenuItem[]>("categories", "GET", {
+    next: { revalidate: 10 },
+  });
 
   return (
     <header>

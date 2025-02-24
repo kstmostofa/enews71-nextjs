@@ -7,8 +7,12 @@ import { fetchApi } from "@/lib/fetchApi";
 import { getHumanReadableDate, getStripHtml } from "@/lib/utils";
 
 const Banner = async () => {
-  const latestNews = await fetchApi<News[]>("latest-news");
-  const popularNews = await fetchApi<News[]>("popular-news");
+  const latestNews = await fetchApi<News[]>("latest-news", "GET", {
+    next: { revalidate: 10 },
+  });
+  const popularNews = await fetchApi<News[]>("popular-news", "GET", {
+    next: { revalidate: 10 },
+  });
 
   const [bannerNews, ...restNews] = latestNews;
   const top2News = restNews.slice(0, 2);
