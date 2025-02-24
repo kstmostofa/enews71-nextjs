@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
         protocol: "http",
         hostname: "localhost",
       },
+      {
+        protocol: "https",
+        hostname: "new.enews71.com",
+      }
     ],
   },
 };
