@@ -52,7 +52,7 @@ const Header = async () => {
             <span className="font-semibold"></span>
           </div>
 
-          <div className="absolute left-1/2 transform -translate-x-1/2">
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-[45px]">
             <Image
               src="/logo.png"
               alt="logo"
