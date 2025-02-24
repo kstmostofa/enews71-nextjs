@@ -73,8 +73,8 @@ const Banner = async () => {
           <div className="grid grid-cols-12 gap-4 mt-4">
             {top2News.map((item, index) => {
               return (
-                <div className="col-span-12 md:col-span-6 border rounded-lg">
-                  <Link key={index} href={`/news/${item.slug}`}>
+                <div key={index} className="col-span-12 md:col-span-6 border rounded-lg">
+                  <Link  href={`/news/${item.slug}`}>
                     <div className="flex flex-col md:flex-row gap-4 w-full">
                       <div className=" w-full md:w-2/5 relative">
                         <Image

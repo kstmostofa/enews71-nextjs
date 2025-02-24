@@ -55,7 +55,7 @@ const PopularLatestNews = ({
                       alt="Card Image"
                       width={100}
                       height={80}
-                      className="w-full h-[80px] object-cover rounded-md"
+                      className="w-full h-[70px] object-cover rounded-md"
                     />
                   </div>
                 </div>

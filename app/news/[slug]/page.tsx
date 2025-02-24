@@ -20,9 +20,7 @@ export async function generateMetadata({
 }) {
   const slug = (await params).slug;
   try {
-    const news = await fetchApi<News>(`news/${slug}`, "GET", {
-      next: { revalidate: 10 },
-    });
+    const news = await fetchApi<News>(`post/${slug}`);
 
     if (!news) return notFound();
 
@@ -32,7 +30,7 @@ export async function generateMetadata({
       openGraph: {
         title: news.title,
         description: getStripHtml(news.content, 20) || "Enws71",
-        url: `https://new.enews71.com/news/${news.slug}`,
+        url: `https://new.enews71.com/post/${news.slug}`,
         images: [
           {
             url: news.featured_image || "/default-image.jpg",
@@ -61,7 +59,7 @@ const SingleNews = async ({
   params: Promise<{ slug: string }>;
 }) => {
   const slug = (await params).slug;
-  const data = await fetchApi<News>(`news/${slug}`, "GET", {
+  const data = await fetchApi<News>(`post/${slug}`, "GET", {
     next: { revalidate: 10 },
   });
 
