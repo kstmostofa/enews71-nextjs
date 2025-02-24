@@ -38,12 +38,10 @@ const getEnglishDate = () => {
   };
   return new Intl.DateTimeFormat("bn-BD", options).format(new Date());
 };
-
+export const dynamic = "force-dynamic";
 
 const Header = async () => {
-  const menus = await fetchApi<MenuItem[]>("categories", "GET", {
-    next: { revalidate: 10 },
-  });
+  const menus = await fetchApi<MenuItem[]>("categories");
 
   return (
     <header>

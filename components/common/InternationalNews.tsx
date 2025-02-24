@@ -10,6 +10,7 @@ interface InternationalNewsProps {
   category: string;
   limit?: number;
 }
+export const dynamic = "force-dynamic";
 
 const InternationalNews = async ({
   title,
@@ -17,11 +18,7 @@ const InternationalNews = async ({
   limit = 5,
 }: InternationalNewsProps) => {
   const InternationalNews = await fetchApi<News[]>(
-    `category/${category}?limit=${limit}`,
-    "GET",
-    {
-      next: { revalidate: 10 },
-    }
+    `category/${category}?limit=${limit}`
   );
   const [firstNews, ...restNews] = InternationalNews;
   const middleNews = restNews.slice(0, 2);

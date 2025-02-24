@@ -10,15 +10,10 @@ interface SportsNewsProps {
   category: string;
   limit?: number;
 }
+export const dynamic = "force-dynamic";
 
 const SportsNews = async ({ title, category, limit = 5 }: SportsNewsProps) => {
-  const data = await fetchApi<News[]>(
-    `category/${category}?limit=${limit}`,
-    "GET",
-    {
-      next: { revalidate: 10 },
-    }
-  );
+  const data = await fetchApi<News[]>(`category/${category}?limit=${limit}`);
   const [firstNews, ...restNews] = data;
   const middleNews = restNews.slice(0, 2);
   const rightSideNews = restNews.slice(2, 8);

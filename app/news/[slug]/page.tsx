@@ -11,6 +11,7 @@ import LetestNews from "@/components/common/LetestNews";
 import { fetchApi } from "@/lib/fetchApi";
 import { notFound } from "next/navigation";
 import { getStripHtml } from "@/lib/utils";
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
