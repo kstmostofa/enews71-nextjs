@@ -25,7 +25,7 @@ const PopularLatestNews = ({
                 "bg-[#2C4B9C] text-white border-b-2 border-red-500"
             )}
           >
-            <p>সর্বশেষ সংবাদ</p>
+            <p className="text-xl">সর্বশেষ সংবাদ</p>
           </div>
           <div
             onClick={() => setActiveTab("popular")}
@@ -35,7 +35,7 @@ const PopularLatestNews = ({
                 "bg-[#2C4B9C] text-white border-b-2 border-red-500"
             )}
           >
-            <p>জনপ্রিয়</p>
+            <p className="text-xl">জনপ্রিয়</p>
           </div>
         </div>
 
@@ -45,7 +45,7 @@ const PopularLatestNews = ({
               <Link href={`/news/${item.slug}`} key={index}>
                 <div className="flex flex-row gap-4 w-full items-center border-b p-2 hover:bg-white-100">
                   <div className="w-[70%]">
-                    <p className="hover:underline text-black font-semibold hover:text-primary">
+                    <p className="hover:underline text-black font-semibold hover:text-primary text-lg">
                       {item.title}
                     </p>
                   </div>

@@ -4,15 +4,14 @@ import React from "react";
 
 const ContentWithAds = ({ content }: { content: string }) => {
   const paragraphs = content.split(/<\/p>/).filter((p) => p.trim() !== "");
+
   return (
     <>
       {paragraphs.map((item, index) => (
         <React.Fragment key={index}>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: item + "</p>",
-            }}
-          ></div>
+          <div className="prose text-black prose-md lg:prose-lg xl:prose-xl w-full max-w-none"> 
+            <div dangerouslySetInnerHTML={{ __html: item + "</p>" }} />
+          </div>
           {(index + 1) % 4 === 0 && <GoogleAdsense ratio="wide" />}
         </React.Fragment>
       ))}

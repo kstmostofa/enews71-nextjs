@@ -20,7 +20,7 @@ const FilterNews = () => {
             <SelectTrigger className="">
               <SelectValue placeholder="--বিভাগ--" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-white">
               <SelectItem value="light">Light</SelectItem>
               <SelectItem value="dark">Dark</SelectItem>
               <SelectItem value="system">System</SelectItem>
@@ -32,7 +32,7 @@ const FilterNews = () => {
             <SelectTrigger className="">
               <SelectValue placeholder="--জেলা--" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-white">
               <SelectItem value="light">Light</SelectItem>
               <SelectItem value="dark">Dark</SelectItem>
               <SelectItem value="system">System</SelectItem>
@@ -44,7 +44,7 @@ const FilterNews = () => {
             <SelectTrigger className="">
               <SelectValue placeholder="--উপজেলা--" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-white">
               <SelectItem value="light">Light</SelectItem>
               <SelectItem value="dark">Dark</SelectItem>
               <SelectItem value="system">System</SelectItem>

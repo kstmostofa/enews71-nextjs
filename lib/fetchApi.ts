@@ -8,7 +8,7 @@ export async function fetchApi<T>(url: string, method: string = "GET", body?: an
                 "Content-Type": "application/json",
             },
             body: method !== "GET" ? JSON.stringify(body) : undefined,
-            next: { revalidate: 10 },
+            next: { revalidate: 1 },
         });
 
         if (!res.ok) {

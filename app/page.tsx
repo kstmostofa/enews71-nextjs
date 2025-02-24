@@ -33,9 +33,9 @@ async function Home() {
             <GoogleAdsense />
           </div>
         </div>
-        <div className="my-4">
+        {/* <div className="my-4">
           <PoliticalNews title="রাজনীতি" category="political" />
-        </div>
+        </div> */}
         <div className="">
           <GoogleAdsense ratio="wide" />
         </div>

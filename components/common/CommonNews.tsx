@@ -32,11 +32,11 @@ const CommonNews = async ({
                 className="w-full object-cover rounded-t-lg h-[190px] md:h-[290px]"
               />
               <div className="p-4">
-                <h2 className="text-lg font-bold text-black cursor-pointer hover:underline hover:text-primary">
+                <h2 className="text-xl font-bold text-black cursor-pointer hover:underline hover:text-primary">
                   {firstNews?.title}
                 </h2>
-                <p className="text-black-100 text-sm mt-2">
-                  {getStripHtml(firstNews?.content, 50)}...
+                <p className="text-black-100 text-md mt-2">
+                  {getStripHtml(firstNews?.content, 40)}...
                 </p>
               </div>
             </Link>
@@ -58,7 +58,7 @@ const CommonNews = async ({
                       />
                     </div>
                     <div className="w-[70%] p-2">
-                      <p className="hover:underline text-black font-semibold hover:text-primary">
+                      <p className="hover:underline text-black font-semibold hover:text-primary text-lg">
                         {item.title}
                       </p>
                     </div>

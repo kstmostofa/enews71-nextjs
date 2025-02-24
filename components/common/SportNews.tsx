@@ -34,11 +34,11 @@ const SportsNews = async ({ title, category, limit = 5 }: SportsNewsProps) => {
                   className="w-full h-[190px] md:h-[300px] object-cover rounded-t-lg"
                 />
                 <div className="p-4">
-                  <h2 className="text-lg font-bold text-[#292219] cursor-pointer hover:underline hover:text-primary">
+                  <h2 className="text-xl font-bold text-[#292219] cursor-pointer hover:underline hover:text-primary">
                     {firstNews?.title}
                   </h2>
-                  <p className="text-[#5C5955] text-sm mt-2">
-                    {getStripHtml(firstNews?.content, 90)}...
+                  <p className="text-slate-600 text-md mt-2 line-clamp-[9]">
+                    {getStripHtml(firstNews?.content, 280)}...
                   </p>
                 </div>
               </div>
@@ -58,11 +58,11 @@ const SportsNews = async ({ title, category, limit = 5 }: SportsNewsProps) => {
                         className="w-full h-[152px] object-cover rounded-t-lg"
                       />
                       <div className="py-2 px-4">
-                        <h2 className="text-lg font-semibold text-[#292219] cursor-pointer hover:underline hover:text-primary">
+                        <h2 className="text-xl font-semibold text-[#292219] cursor-pointer hover:underline hover:text-primary line-clamp-1">
                           {item.title}
                         </h2>
-                        <p className="text-[#5C5955] text-sm mt-2">
-                          {getStripHtml(item.content, 20)}
+                        <p className="text-slate-600 text-mx mt-2 line-clamp-[4]">
+                          {getStripHtml(item.content, 30)}
                         </p>
                       </div>
                     </div>

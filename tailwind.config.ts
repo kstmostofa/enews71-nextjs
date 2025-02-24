@@ -14,9 +14,9 @@ export default {
 			colors: {
 				primary: {
 					"100": "#FFE8F0",
+					"200": "#D6E4FA",
 					"500": "#2a3f6b",
 					DEFAULT: "#2C4B9C",
-
 				},
 				secondary: "#ED1C24",
 				light: "#F7F7F7",
@@ -33,5 +33,5 @@ export default {
 			},
 		},
 	},
-	plugins: [],
+	plugins: [require('@tailwindcss/typography')],
 } satisfies Config;

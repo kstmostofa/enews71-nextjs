@@ -21,7 +21,7 @@ const Banner = async () => {
         <div className="col-span-12 md:col-span-3">
           <Link href={`/news/${bannerNews?.slug}`}>
             <div className="grid grid-cols-12 gap-4 border rounded-lg overflow-hidden hover:shadow-md transition-all hover:bg-white-100">
-              <div className="col-span-12 md:col-span-6 relative h-auto">
+              <div className="col-span-12 md:col-span-6 relative h-auto max-h-[335px]">
                 <Image
                   src={bannerNews?.featured_image}
                   alt="banner"
@@ -31,16 +31,18 @@ const Banner = async () => {
                 />
               </div>
               <div className="col-span-12 md:col-span-6">
-                <div className="p-4">
-                  <div className="mb-4 rounded-full bg-primary py-0.5 px-3 text-white transition-all shadow-sm text-center font-semibold text-sm w-32">
-                    বিশেষ প্রতিবেদন
+                <div className="flex flex-col justify-between h-full p-4">
+                  <div className="">
+                    <div className="mb-4 rounded-full bg-primary-200 py-0.5 px-3 text-primary transition-all shadow-sm text-center font-semibold text-sm w-32">
+                  সর্বশেষ
                   </div>
-                  <h4 className="mb-2 text-black text-xl font-semibold hover:text-primary">
+                  <h4 className="mb-2 text-black text-2xl font-semibold hover:text-primary">
                     {bannerNews?.title}
                   </h4>
-                  <p className="mb-8 text-slate-600 leading-normal font-light">
-                    {getStripHtml(bannerNews?.content, 50)}...
+                  <p className="mb-8 text-slate-600 leading-normal font-light text-lg">
+                    {getStripHtml(bannerNews?.content, 40)}
                   </p>
+                  </div>
                   <div className="flex justify-between">
                     <div className="text-slate-800 font-semibold text-sm hover:text-primary flex items-center">
                       আরও পড়ুন
@@ -56,12 +58,12 @@ const Banner = async () => {
           </Link>
         </div>
         <div className="col-span-12 md:col-span-1 rounded-lg">
-          <div className="w-full h-[320px] overflow-hidden">
+          <div className="w-full h-[335px] max-h-[335px] overflow-hidden">
             <Image
               height={300}
               width={300}
               src={"/addimage.png"}
-              className="w-full h-full rounded-lg object-cover"
+              className="w-full h-[335px] rounded-lg object-cover"
               alt="Add Image"
             />
           </div>
@@ -80,7 +82,7 @@ const Banner = async () => {
                         <Image
                           src={item.featured_image}
                           alt="Card Image"
-                          className="object-cover rounded-t-lg md:rounded-l-lg md:rounded-tr-none h-[140px] w-full md:h-[175px]"
+                          className="object-cover rounded-t-lg md:rounded-l-lg md:rounded-tr-none h-[140px] w-full md:h-[175px] max-h-[175px]"
                           height={300}
                           width={300}
                         />
@@ -89,8 +91,8 @@ const Banner = async () => {
                         <h2 className="text-xl font-bold text-gray-800 hover:text-primary">
                           {item.title}
                         </h2>
-                        <p className=" text-gray-600 text-sm">
-                          {getStripHtml(item.content, 30)}
+                        <p className=" text-gray-600 text-md">
+                          {getStripHtml(item.content, 20)}
                         </p>
                       </div>
                     </div>
@@ -116,7 +118,7 @@ const Banner = async () => {
                         className="object-cover rounded-t-lg w-full h-[150px] md:h-[175px]"
                       />
                     </div>
-                    <h3 className="text-lg font-semibold text-center py-2 hover:text-primary">
+                    <h3 className="text-lg font-semibold text-center py-2 hover:text-primary text-clamp-2">
                       {item.title}
                     </h3>
                   </Link>
