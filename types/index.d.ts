@@ -36,7 +36,7 @@ type Reporter = {
     name: string;
     name_bn: string;
     photo: string;
-    desgignation: Designation;
+    designation: Designation;
 }
 
 type News = {
@@ -58,4 +58,6 @@ type News = {
     meta_title: string;
     meta_description: string;
     meta_keywords: string;
+    published_at: string;
+    
 }

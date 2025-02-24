@@ -12,11 +12,10 @@ import { fetchApi } from "@/lib/fetchApi";
 import { notFound } from "next/navigation";
 import { getStripHtml } from "@/lib/utils";
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const decodedSlug = decodeURIComponent(params.slug);
-  
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const slug = (await params).slug;  
   try {
-    const news = await fetchApi<News>(`news/${decodedSlug}`);
+    const news = await fetchApi<News>(`news/${slug}`);
 
     if (!news) return notFound();
 
@@ -42,17 +41,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-const SingleNews = async ({ params }: { params: { slug: string } }) => {
-  const decodedSlug = decodeURIComponent(params.slug);
+const SingleNews = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
-  let data: News | null = null;
-  try {
-    data = await fetchApi<News>(`news/${decodedSlug}`);
-    if (!data) return notFound();
-  } catch (error) {
-    console.error("News Fetch Error:", error);
-    return notFound();
-  }
+  const slug = (await params).slug;
+  const data = await fetchApi<News>(`news/${slug}`);
+
 
   return (
     <div className="container mx-auto p-4 md:p-0">
@@ -83,6 +76,7 @@ const SingleNews = async ({ params }: { params: { slug: string } }) => {
                     <p className="text-sm">
                       {data?.reporter?.name ?? "Unknown Reporter"},{" "}
                       {data?.reporter?.designation?.name ?? "Unknown Designation"}
+
                     </p>
                     <p className="text-xs">
                       {data?.published_at
