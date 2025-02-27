@@ -13,7 +13,7 @@ async function Home() {
   return (
     <>
       <Banner />
-      <div className="container mx-auto p-4 md:p-0 ">
+      <div className="container mx-auto p-4 md:p-0">
         <div className="grid grid-cols-4 gap-4 my-4">
           <div className="col-span-4 md:col-span-3">
             <CommonNews sectionTitle="জাতীয়" category="national" />
@@ -33,9 +33,6 @@ async function Home() {
             <GoogleAdsense />
           </div>
         </div>
-        {/* <div className="my-4">
-          <PoliticalNews title="রাজনীতি" category="political" />
-        </div> */}
         <div className="">
           <GoogleAdsense ratio="wide" />
         </div>

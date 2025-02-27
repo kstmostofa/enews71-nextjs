@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="bg-[#EDEDED]">
+    <footer className="bg-white-100 mt-8">
       <div className="container mx-auto py-4 md:py-8">
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between  gap-4">
           <div className="">
@@ -14,8 +14,8 @@ const Footer = () => {
               src="/logo.png"
               alt="Logo"
               width={200}
-              height={50}
-              className="w-[200px] object-cover"
+              height={45}
+              className="w-full object-cover h-[45px]"
             />
           </div>
           <div className="flex flex-col items-center gap-4 text-center p-4 md:p-0">
@@ -71,7 +71,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="bg-black ">
+      <div className="bg-black">
         <div className="container mx-auto py-4 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
           <div className="">
             <p className="text-xl text-white">স্বত্ব © ইনিউজ৭১.কম | </p>
@@ -83,7 +83,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

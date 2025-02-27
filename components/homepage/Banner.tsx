@@ -16,7 +16,7 @@ const Banner = async () => {
   const top6News = restNews.slice(2, 8);
 
   return (
-    <section className="container w-full mx-auto py-4 px-4 md:px-0">
+    <section className="container mx-auto p-4 md:px-0">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="col-span-12 md:col-span-3">
           <Link href={`/news/${bannerNews?.slug}`}>
@@ -58,7 +58,7 @@ const Banner = async () => {
           </Link>
         </div>
         <div className="col-span-12 md:col-span-1 rounded-lg">
-          <div className="w-full h-[335px] max-h-[335px] overflow-hidden">
+          <div className="w-full h-[335px] max-h-[335px]">
             <Image
               height={300}
               width={300}

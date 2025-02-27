@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -7,6 +8,12 @@ import Footer from "@/components/Footer";
 const kalpurush = localFont({
   src: "./fonts/kalpurush.ttf",
   variable: "--font-sans",
+});
+
+const JetBrains = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -22,10 +29,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${kalpurush.variable} antialiased`}
+        className={`${kalpurush.variable} ${JetBrains.variable} antialiased`}
       >
         <Header />
-        {children}
+        <main className="min-h-[calc(100vh-424px)]">{children}</main>
         <Footer />
       </body>
     </html>

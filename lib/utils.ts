@@ -61,4 +61,6 @@ export function formatBanglaDate(isoString: string): string {
   return `প্রকাশ: ${day} ${month} ${year}, ${toBanglaNumber(bdHours)}:${minutes}`;
 }
 
+export const paginationLimit = 12;
+
 

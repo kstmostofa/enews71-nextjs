@@ -87,15 +87,15 @@ const Header = async () => {
         <ul className="hidden md:flex text-white font-bold container mx-auto">
           <li className="relative py-2.5 px-3 flex items-center justify-center group hover:bg-primary-500 hover:text-white">
             <Link href="/" className="flex items-center justify-center">
-              <LuHouse className="text-lg" />
+              <LuHouse size={20} />
             </Link>
             <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-red-500 transition-all duration-300 ease-out group-hover:w-full group-hover:left-0"></span>
           </li>
+          
 
           {menus.map((menu, index) => (
-            <Link href={menu.slug}>
+            <Link key={index} href={`/${menu.slug}`}>
               <li
-                key={menu.id}
                 className="relative py-2.5 px-3 group hover:bg-primary-500 hover:text-white"
               >
                 <div className="flex items-center text-xl">
@@ -128,7 +128,7 @@ const Header = async () => {
                         key={subIndex}
                         className="py-2 px-4 hover:bg-primary-200 whitespace-nowrap rounded"
                       >
-                        <Link href={subItem.slug}>{subItem.name_bn}</Link>
+                        <Link href={`/${subItem.slug}`}>{subItem.name_bn}</Link>
                       </li>
                     ))}
                   </ul>

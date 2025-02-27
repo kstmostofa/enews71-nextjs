@@ -50,7 +50,9 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ menus }) => {
                 key={index}
                 className="relative py-2.5 px-3 group hover:bg-primary-500 hover:text-white"
               >
-                <Link href={menu.slug}>{menu.name_bn}</Link>
+                <Link href={`/${menu.slug}`}>
+                {menu.name_bn}
+                </Link>
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-red-500 transition-all duration-300 ease-out group-hover:w-full group-hover:left-0"></span>
               </li>
             ))}
@@ -90,7 +92,9 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ menus }) => {
                     className="flex justify-between items-center cursor-pointer hover:bg-primary-500 rounded-lg px-3 py-2 hover:text-white"
                     onClick={() => toggleSubMenu(index)}
                   >
-                    <Link href={menu.slug}>{menu.name_bn}</Link>
+                    <Link href={`/${menu.slug}`}>
+                    {menu.name_bn}
+                    </Link>
                     {menu.subItems && menu.subItems.length != 0 && (
                       <span className="text-sm">
                         {activeMenu === index ? (
@@ -105,7 +109,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ menus }) => {
                   {menu.subItems && activeMenu === index && (
                     <ul className="ml-8 space-y-1 mt-2">
                       {menu.subItems.map((subItem, subIndex) => (
-                        <Link href={subItem.slug} key={subIndex}>
+                        <Link href={`/${menu.slug}`} key={subIndex}>
                           <li className="p-2 rounded-lg hover:bg-primary-500 hover:text-white">
                             {subItem.name_bn}
                           </li>

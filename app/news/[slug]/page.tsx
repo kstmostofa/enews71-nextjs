@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Copy, Facebook, Printer, Share2 } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import { format } from "date-fns";
 import ContentWithAds from "@/components/common/ContentWithAds";
 import ReletedNews from "@/components/common/ReletedNews";
 import SocialMedia from "@/components/common/SocialMedia";
@@ -11,6 +10,8 @@ import LetestNews from "@/components/common/LetestNews";
 import { fetchApi } from "@/lib/fetchApi";
 import { notFound } from "next/navigation";
 import { formatBanglaDate, getStripHtml } from "@/lib/utils";
+import Tags from "@/components/common/Tags";
+import Link from "next/link";
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
@@ -20,7 +21,7 @@ export async function generateMetadata({
 }) {
   const slug = (await params).slug;
   try {
-    const news = await fetchApi<News>(`post/${slug}`);
+    const news = await fetchApi<News>(`news/${slug}`);
 
     if (!news) return notFound();
 
@@ -30,7 +31,7 @@ export async function generateMetadata({
       openGraph: {
         title: news.title,
         description: getStripHtml(news.content, 20) || "Enews71",
-        url: `https://new.enews71.com/post/${news.slug}`,
+        url: `https://new.enews71.com/news/${news.slug}`,
         images: [
           {
             url: news.featured_image || "/default-image.jpg",
@@ -59,15 +60,24 @@ const SingleNews = async ({
   params: Promise<{ slug: string }>;
 }) => {
   const slug = (await params).slug;
-  const data = await fetchApi<News>(`post/${slug}`);
-
+  const data = await fetchApi<News>(`news/${slug}`);
   return (
     <div className="container mx-auto p-4 md:p-0">
-      <GoogleAdsense ratio="wide" />
+      <GoogleAdsense ratio="wide" marginTop />
       <div className="grid grid-cols-12 gap-4 md:gap-8 mt-4">
         <div className="col-span-12 md:col-span-9">
           <div>
-            <p className="text-sm">সারাদেশ</p>
+            <div className="flex items-center gap-2 my-4">
+              {data?.categories?.map((item: Category) => (
+                <Link
+                  key={item.id}
+                  href={`/${item.slug}`}
+                  className="bg-white-100 py-1 px-4 rounded hover:text-primary text-lg font-medium"
+                >
+                  {item.name_bn}
+                </Link>
+              ))}
+            </div>
             <h1 className="text-primary text-4xl text-center md:text-left font-bold">
               {data.title}
             </h1>
@@ -85,7 +95,7 @@ const SingleNews = async ({
                   )}
                   <div>
                     <p className="text-md font-bold text-primary">
-                      {data?.reporter?.name ?? "Unknown Reporter"},{" "}
+                      {data?.reporter?.name_bn ?? "Unknown Reporter"},{" "}
                       {data?.reporter?.designation?.name ??
                         "Unknown Designation"}
                     </p>
@@ -147,25 +157,12 @@ const SingleNews = async ({
             />
           </div>
 
-          <div className="mt-4">
-            {data?.tags?.length ? (
-              data.tags.map((tag: string, index: number) => (
-                <span
-                  key={index}
-                  className="inline-block mr-2 bg-gray-200 px-3 py-1 rounded"
-                >
-                  {tag}
-                </span>
-              ))
-            ) : (
-              <p className="text-gray-500">No tags available.</p>
-            )}
-          </div>
+          <Tags tags={data?.tags} />
 
           <GoogleAdsense ratio="wide" />
 
           <div className="mt-4">
-            <ReletedNews />
+            <ReletedNews category={data?.categories?.[0]?.slug ?? "national"} />
           </div>
         </div>
 
