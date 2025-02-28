@@ -5,8 +5,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const kalpurush = localFont({
-  src: "./fonts/kalpurush.ttf",
+const solaimainLipi = localFont({
+  src: "./fonts/SolaimanLipi.ttf",
   variable: "--font-sans",
 });
 
@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${kalpurush.variable} ${JetBrains.variable} antialiased`}
+        className={`${solaimainLipi.variable} ${JetBrains.variable} antialiased`}
       >
         <Header />
         <main className="min-h-[calc(100vh-424px)]">{children}</main>

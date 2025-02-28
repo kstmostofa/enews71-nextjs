@@ -56,6 +56,7 @@ type News = {
     status: string;
     view_count: number;
     meta_title: string;
+    meta_image: string;
     meta_description: string;
     meta_keywords: string;
     published_at: string;

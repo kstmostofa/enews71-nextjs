@@ -3,14 +3,6 @@
 @tailwind utilities;
 
 @layer base{
-  :root {
-    --font-kalpurush: "Kalpurush", sans-serif;
-  }
-  
-  body {
-    font-family: var(--font-kalpurush);
-  }
-
   .card-shadow {
     @apply hover:shadow-md transition-all hover:bg-white-100;
   }

@@ -34,7 +34,7 @@ export async function generateMetadata({
         url: `https://new.enews71.com/news/${news.slug}`,
         images: [
           {
-            url: news.featured_image || "/default-image.jpg",
+            url: news.meta_image || "/default-image.jpg",
             width: 1200,
             height: 630,
             alt: news.title,
@@ -45,7 +45,7 @@ export async function generateMetadata({
         card: "summary_large_image",
         title: news.title,
         description: getStripHtml(news.content, 20) || "Enews71",
-        images: news.featured_image || "/default-image.jpg",
+        images: news.meta_image || "/default-image.jpg",
       },
     };
   } catch (error) {

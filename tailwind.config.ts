@@ -12,7 +12,7 @@ export default {
 				xs: "475px",
 			},
 			fontFamily: {
-				sans: ["Kalpurush", "sans-serif"],
+				sans: ["SolaimanLipi", "sans-serif"],
 				serif: ["JetBrains Mono", "serif"],
 			},
 			colors: {
