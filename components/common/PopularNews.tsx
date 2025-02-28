@@ -3,14 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const LetestNews = async () => {
-  const latestNews = await fetchApi<News[]>("latest-news?limit=5");
+const PopularNews = async () => {
+  const popularNews = await fetchApi<News[]>("popular-news?limit=5");
   return (
     <div className="bg-red-100 p-4 rounded">
       <div className="text-center">
-        <h3 className="text-2xl text-red-500 font-bold">সর্বশেষ সংবাদ</h3>
+        <h3 className="text-2xl text-red-500 font-bold">জনপ্রিয় সংবাদ</h3>
       </div>
-      {latestNews.map((item, index) => {
+      {popularNews.map((item, index) => {
         return (
           <div key={index} className="mt-2 border-t border-red-200 pt-2">
             <div className="flex items-center gap-2 w-full">
@@ -38,4 +38,4 @@ const LetestNews = async () => {
   );
 };
 
-export default LetestNews;
+export default PopularNews;

@@ -6,7 +6,7 @@ import React from "react";
 const NewsCard = ({ news }: { news: News }) => {
   return (
     <div>
-      <Link href={`/news/${news.slug}`}>
+      <Link href={`/${news.categories[0]?.slug}/${news.id}`}>
         <div className="card-shadow border rounded-lg">
           <Image
             height={152}

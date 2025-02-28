@@ -23,7 +23,7 @@ const CommonNews = async ({
       <div className="grid grid-cols-12 gap-4 mt-4 items-start justify-center">
         <div className="col-span-12 md:col-span-6">
           <div className="bg-white-100 rounded-lg hover:shadow-md transition-all">
-            <Link href={`/news/${firstNews?.slug}`}>
+            <Link href={`/${firstNews?.categories[0]?.slug}/${firstNews?.id}`}>
               <Image
                 src={firstNews?.featured_image}
                 height={300}
@@ -46,7 +46,7 @@ const CommonNews = async ({
           <div className="">
             {restNews.map((item, index) => {
               return (
-                <Link href={`/news/${item.slug}`} key={index}>
+                <Link href={`/${item.categories[0].slug}/${item.id}`} key={index}>
                   <div className="flex flex-row gap-2 w-full mb-4 bg-white-100 hover:shadow-md transition-all rounded-lg">
                     <div className="w-[30%]">
                       <Image

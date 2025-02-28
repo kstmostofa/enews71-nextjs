@@ -1,37 +1,39 @@
-import GoogleAdsense from "@/components/common/GoogleAdsense";
-import { Button } from "@/components/ui/button";
-import { Copy, Facebook, Printer, Share2 } from "lucide-react";
-import Image from "next/image";
-import React from "react";
 import ContentWithAds from "@/components/common/ContentWithAds";
+import GoogleAdsense from "@/components/common/GoogleAdsense";
+import LetestNews from "@/components/common/LetestNews";
+import PopularNews from "@/components/common/PopularNews";
 import ReletedNews from "@/components/common/ReletedNews";
 import SocialMedia from "@/components/common/SocialMedia";
-import LetestNews from "@/components/common/LetestNews";
-import { fetchApi } from "@/lib/fetchApi";
-import { notFound } from "next/navigation";
-import { formatBanglaDate, getStripHtml } from "@/lib/utils";
 import Tags from "@/components/common/Tags";
+import { Button } from "@/components/ui/button";
+import { fetchApi } from "@/lib/fetchApi";
+import { formatBanglaDate, getStripHtml } from "@/lib/utils";
+import { Copy, Printer, Share2 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import { LuFacebook } from "react-icons/lu";
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; id: string }>;
 }) {
-  const slug = (await params).slug;
+  const category = (await params).slug;
+  const id = (await params).id;
   try {
-    const news = await fetchApi<News>(`news/${slug}`);
+    const news = await fetchApi<News>(`${category}/${id}`);
 
     if (!news) return notFound();
 
     return {
-      title: news.title || "Enws71",
-      description: getStripHtml(news.content, 20) || "Enews71",
+      title: news.title || "ইনিউজ৭১ - এই প্রজন্মের গণমাধ্যম",
+      description: getStripHtml(news.content, 20) || "ইনিউজ৭১ - এই প্রজন্মের গণমাধ্যম",
       openGraph: {
         title: news.title,
-        description: getStripHtml(news.content, 20) || "Enews71",
-        url: `https://new.enews71.com/news/${news.slug}`,
+        description: getStripHtml(news.content, 20) || "ইনিউজ৭১ - এই প্রজন্মের গণমাধ্যম",
+        url: `https://enews71.com/${category}/${news.slug}`,
         images: [
           {
             url: news.meta_image || "/default-image.jpg",
@@ -44,23 +46,24 @@ export async function generateMetadata({
       twitter: {
         card: "summary_large_image",
         title: news.title,
-        description: getStripHtml(news.content, 20) || "Enews71",
+        description: getStripHtml(news.content, 20) || "ইনিউজ৭১ - এই প্রজন্মের গণমাধ্যম",
         images: news.meta_image || "/default-image.jpg",
       },
     };
   } catch (error) {
     console.error("Metadata Fetch Error:", error);
-    return { title: "Enws71", description: "News not found" };
+    return { title: "ইনিউজ৭১ - এই প্রজন্মের গণমাধ্যম", description: "ইনিউজ৭১ - এই প্রজন্মের গণমাধ্যম" };
   }
 }
 
 const SingleNews = async ({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; id: string }>;
 }) => {
-  const slug = (await params).slug;
-  const data = await fetchApi<News>(`news/${slug}`);
+  const category = (await params).slug;
+  const id = (await params).id;
+  const data = await fetchApi<News>(`${category}/${id}`);
   return (
     <div className="container mx-auto p-4 md:p-0">
       <GoogleAdsense ratio="wide" marginTop />
@@ -78,19 +81,19 @@ const SingleNews = async ({
                 </Link>
               ))}
             </div>
-            <h1 className="text-primary text-4xl text-center md:text-left font-bold">
+            <h1 className="text-primary text-4xl text-center md:text-left font-bold border-l-4 border-red-500 pl-2">
               {data.title}
             </h1>
             <div className="mt-4">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 bg-white-100 p-2 rounded-lg">
                   {data?.reporter?.photo && (
                     <Image
                       src={data.reporter.photo}
                       alt={data.reporter.name}
                       width={50}
                       height={50}
-                      className="border h-[50px] w-[50px] rounded-full"
+                      className="border h-[50px] w-[50px] rounded-full border-primary p-[1px] object-cover"
                     />
                   )}
                   <div>
@@ -114,7 +117,7 @@ const SingleNews = async ({
                     size="icon"
                     className="bg-[#E2E2E2] hover:bg-[#e2e2e2c4]"
                   >
-                    <Facebook fill="#000" />
+                    <LuFacebook fill="#000" />
                   </Button>
                   <Button
                     size="icon"
@@ -176,9 +179,9 @@ const SingleNews = async ({
           <div className="mt-4">
             <LetestNews />
           </div>
-          <GoogleAdsense />
+          <GoogleAdsense marginTop />
           <div className="mt-4">
-            <LetestNews />
+            <PopularNews />
           </div>
         </div>
       </div>

@@ -19,7 +19,7 @@ const Banner = async () => {
     <section className="container mx-auto p-4 md:px-0">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="col-span-12 md:col-span-3">
-          <Link href={`/news/${bannerNews?.slug}`}>
+          <Link href={`/${bannerNews?.categories[0]?.slug}/${bannerNews?.id}`}>
             <div className="grid grid-cols-12 gap-4 border rounded-lg overflow-hidden hover:shadow-md transition-all hover:bg-white-100">
               <div className="col-span-12 md:col-span-6 relative h-auto max-h-[335px]">
                 <Image
@@ -76,7 +76,7 @@ const Banner = async () => {
             {top2News.map((item, index) => {
               return (
                 <div key={index} className="col-span-12 md:col-span-6 border rounded-lg">
-                  <Link  href={`/news/${item.slug}`}>
+                  <Link  href={`/${item.categories[0]?.slug}/${item.id}`}>
                     <div className="flex flex-col md:flex-row gap-4 w-full">
                       <div className=" w-full md:w-2/5 relative">
                         <Image
@@ -108,7 +108,7 @@ const Banner = async () => {
                   key={index}
                   className="col-span-12 md:col-span-4 border rounded-lg"
                 >
-                  <Link href={`/news/${item.slug}`}>
+                  <Link href={`/${item.categories[0]?.slug}/${item.id}`}>
                     <div className="relative w-full">
                       <Image
                         src={item.featured_image}

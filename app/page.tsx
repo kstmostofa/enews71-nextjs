@@ -4,7 +4,6 @@ import CommonNews from "@/components/common/CommonNews";
 import FilterNews from "@/components/common/FilterNews";
 import GoogleAdsense from "@/components/common/GoogleAdsense";
 import InternationalNews from "@/components/common/InternationalNews";
-import PoliticalNews from "@/components/common/PoliticalNews";
 import ShowbizNews from "@/components/common/ShowbizNews";
 import SportNews from "@/components/common/SportNews";
 import Banner from "@/components/homepage/Banner";

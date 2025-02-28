@@ -24,7 +24,7 @@ const SportsNews = async ({ title, category, limit = 5 }: SportsNewsProps) => {
       <div className="mt-4 ">
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-12 md:col-span-4 border rounded-lg card-shadow bg-white">
-            <Link href={`/news/${firstNews?.slug}`}>
+            <Link href={`/${firstNews?.categories[0]?.slug}/${firstNews?.id}`}>
               <div className="">
                 <Image
                   src={firstNews?.featured_image}
@@ -48,7 +48,7 @@ const SportsNews = async ({ title, category, limit = 5 }: SportsNewsProps) => {
             <div className="flex flex-col space-y-4">
               {middleNews.map((item, index) => {
                 return (
-                  <Link key={index} href={`/news/${item.slug}`}>
+                  <Link key={index} href={`/${item.categories[0]?.slug}/${item.id}`}>
                     <div className="card-shadow border rounded-lg">
                       <Image
                         height={152}
@@ -75,7 +75,7 @@ const SportsNews = async ({ title, category, limit = 5 }: SportsNewsProps) => {
             <div className="flex flex-col gap-y-4">
               {rightSideNews.map((item, index) => {
                 return (
-                  <Link href="#" key={index}>
+                  <Link key={index} href={`/${item.categories[0]?.slug}/${item.id}`}>
                     <div className="flex flex-row w-full border rounded-lg card-shadow">
                       <div className="w-[30%]">
                         <Image

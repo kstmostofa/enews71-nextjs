@@ -42,7 +42,7 @@ const PopularLatestNews = ({
         <div className="h-[660px] overflow-auto">
           {(activeTab === "popular" ? popularNews : latestNews).map(
             (item, index) => (
-              <Link href={`/news/${item.slug}`} key={index}>
+              <Link href={`/${item.categories[0].slug}/${item.id}`} key={index}>
                 <div className="flex flex-row gap-4 w-full items-center border-b p-2 hover:bg-white-100">
                   <div className="w-[70%]">
                     <p className="hover:underline text-black font-semibold hover:text-primary text-lg">
