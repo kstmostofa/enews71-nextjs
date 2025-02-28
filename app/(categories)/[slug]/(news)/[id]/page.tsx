@@ -23,16 +23,23 @@ export async function generateMetadata({
   const category = (await params).slug;
   const id = (await params).id;
   try {
-    const news = await fetchApi<News>(`${category}/${id}`);
-
-    if (!news) return notFound();
+    const news = await fetchApi<News>(`${category}/${id}`)
+      .then((res) => {
+        return res;
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        notFound();
+      });
 
     return {
       title: news.title || "ইনিউজ৭১ - এই প্রজন্মের গণমাধ্যম",
-      description: getStripHtml(news.content, 20) || "ইনিউজ৭১ - এই প্রজন্মের গণমাধ্যম",
+      description:
+        getStripHtml(news.content, 20) || "ইনিউজ৭১ - এই প্রজন্মের গণমাধ্যম",
       openGraph: {
         title: news.title,
-        description: getStripHtml(news.content, 20) || "ইনিউজ৭১ - এই প্রজন্মের গণমাধ্যম",
+        description:
+          getStripHtml(news.content, 20) || "ইনিউজ৭১ - এই প্রজন্মের গণমাধ্যম",
         url: `https://enews71.com/${category}/${news.slug}`,
         images: [
           {
@@ -46,13 +53,17 @@ export async function generateMetadata({
       twitter: {
         card: "summary_large_image",
         title: news.title,
-        description: getStripHtml(news.content, 20) || "ইনিউজ৭১ - এই প্রজন্মের গণমাধ্যম",
+        description:
+          getStripHtml(news.content, 20) || "ইনিউজ৭১ - এই প্রজন্মের গণমাধ্যম",
         images: news.meta_image || "/default-image.jpg",
       },
     };
   } catch (error) {
     console.error("Metadata Fetch Error:", error);
-    return { title: "ইনিউজ৭১ - এই প্রজন্মের গণমাধ্যম", description: "ইনিউজ৭১ - এই প্রজন্মের গণমাধ্যম" };
+    return {
+      title: "ইনিউজ৭১ - এই প্রজন্মের গণমাধ্যম",
+      description: "ইনিউজ৭১ - এই প্রজন্মের গণমাধ্যম",
+    };
   }
 }
 
@@ -63,7 +74,15 @@ const SingleNews = async ({
 }) => {
   const category = (await params).slug;
   const id = (await params).id;
-  const data = await fetchApi<News>(`${category}/${id}`);
+  const data = await fetchApi<News>(`${category}/${id}`)
+    .then((res) => {
+      return res;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      notFound();
+    });
+
   return (
     <div className="container mx-auto p-4 md:p-0">
       <GoogleAdsense ratio="wide" marginTop />
