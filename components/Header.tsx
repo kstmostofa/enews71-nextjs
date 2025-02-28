@@ -9,6 +9,7 @@ import {
 } from "react-icons/lu";
 import MobileHeader from "./MobileHeader";
 import { fetchApi } from "@/lib/fetchApi";
+import { getEnglishDate } from "@/lib/utils";
 
 export interface MenuItem {
   id: number;
@@ -29,15 +30,7 @@ const socials: SociaLink[] = [
   { name: "Instagram", link: "https://instagram.com", icon: <LuInstagram /> },
   { name: "Youtube", link: "https://youtube.com", icon: <LuYoutube /> },
 ];
-const getEnglishDate = () => {
-  const options: Intl.DateTimeFormatOptions = {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  };
-  return new Intl.DateTimeFormat("bn-BD", options).format(new Date());
-};
+
 export const dynamic = "force-dynamic";
 
 const Header = async () => {
@@ -74,8 +67,8 @@ const Header = async () => {
                 key={index}
                 className="text-primary hover:text-secondary text-xl"
               >
-                <Link href={social.link} target="_blank">
-                  {social.icon}
+                <Link href={social?.link} target="_blank">
+                  {social?.icon}
                 </Link>
               </span>
             ))}
@@ -99,8 +92,8 @@ const Header = async () => {
                 className="relative py-2.5 px-3 group hover:bg-primary-500 hover:text-white"
               >
                 <div className="flex items-center text-xl">
-                  {menu.name_bn}
-                  {menu.subItems && menu.subItems.length != 0 && (
+                  {menu?.name_bn}
+                  {menu?.subItems && menu?.subItems?.length != 0 && (
                     <span className="ml-2">
                       <svg
                         className="w-3 h-3 fill-current"
@@ -113,7 +106,7 @@ const Header = async () => {
                   )}
                 </div>
 
-                {menu.subItems && menu.subItems.length != 0 && (
+                {menu?.subItems && menu?.subItems?.length != 0 && (
                   <ul
                     className={`absolute rounded ${
                       index === menus.length - 1 ? "right-0" : "left-0"
@@ -123,12 +116,12 @@ const Header = async () => {
                         : "w-[200px] p-2"
                     }`}
                   >
-                    {menu.subItems.map((subItem, subIndex) => (
+                    {menu?.subItems?.map((subItem, subIndex) => (
                       <li
                         key={subIndex}
                         className="py-2 px-4 hover:bg-primary-200 whitespace-nowrap rounded"
                       >
-                        <Link href={`/${subItem.slug}`}>{subItem.name_bn}</Link>
+                        <Link href={`/${subItem?.slug}`}>{subItem?.name_bn}</Link>
                       </li>
                     ))}
                   </ul>

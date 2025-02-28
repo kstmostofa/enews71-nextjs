@@ -10,7 +10,17 @@ export function getStripHtml(html: string, length: number): string {
   return html.replace(/<[^>]*>?/gm, '').split(" ").slice(0, length).join(" ") + "...";
 }
 
-//date time to human readable format
+export const getEnglishDate = () => {
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "Asia/Dhaka",
+  };
+  return new Intl.DateTimeFormat("bn-BD", options).format(new Date());
+};
+
 export function getHumanReadableDate(dateString: string): string {
   const date = new Date(dateString);
   const now = new Date();
